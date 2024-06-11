@@ -1,8 +1,10 @@
 import {_handlerGetItem} from '@constants/functional';
 import {Keys} from '@constants/keys';
+import {useNavigate} from '@hooks/useNavigate';
 import {useEffect} from 'react';
 
-const useSplashScreen = (navigation: any) => {
+const useSplashScreen = () => {
+  const {resetNavigate} = useNavigate();
   const handleNavigationAfterSplash = () => {
     const boot = async () => {
       return await _handlerGetItem(Keys.onboarded);
@@ -14,6 +16,7 @@ const useSplashScreen = (navigation: any) => {
           // Mark: Checking if user is loged in
         } else {
           // Mark: Navigate to Onboarding Screen
+          resetNavigate('OnboardingScreen');
         }
       });
     }, 3000);

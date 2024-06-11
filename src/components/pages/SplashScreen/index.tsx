@@ -1,16 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import React, {FC} from 'react';
+import React from 'react';
 import {Image, View} from 'react-native';
 import {styles} from './style';
 import {useSplashScreen} from './useSplashScreen';
 
-type Props = {
-  navigation: any;
-};
-
-const SplashScreen: FC<Props> = ({navigation}) => {
-  const {} = useSplashScreen(navigation);
+const SplashScreen = () => {
+  const {} = useSplashScreen();
 
   return (
     <View style={styles.container}>

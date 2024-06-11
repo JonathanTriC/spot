@@ -8,4 +8,5 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: Colors.white,
   },
+  image: {width: 240, height: 69, objectFit: 'contain'},
 });

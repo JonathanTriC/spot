@@ -11,9 +11,9 @@ const useSplashScreen = () => {
     };
 
     const timeout = setTimeout(() => {
-      boot().then(val => {
+      boot().then(async val => {
         if (val) {
-          // Mark: Checking if user is loged in
+          // Mark: Checking if user is loged
         } else {
           // Mark: Navigate to Onboarding Screen
           resetNavigate('OnboardingScreen');

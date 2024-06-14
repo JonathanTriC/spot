@@ -1,14 +1,15 @@
 import {useNavigate} from '@hooks/useNavigate';
 
 const useOnboarding = () => {
-  const {resetNavigate} = useNavigate();
-  const handleDone = async (auth: 'login' | 'signup') => {
+  const {navigateScreen} = useNavigate();
+  const handleNavigateAs = async (role: 'user' | 'guest') => {
     // await _handlerSetItem(Keys.onboarded, 'true');
-    if (auth === 'login') {
+    if (role === 'user') {
+      navigateScreen('LoginScreen');
     } else {
     }
   };
-  return {handleDone};
+  return {handleNavigateAs};
 };
 
 export default useOnboarding;

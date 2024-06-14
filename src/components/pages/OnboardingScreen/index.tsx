@@ -1,10 +1,11 @@
 import {Button} from '@components/atoms';
+import Divider from '@components/atoms/Divider';
 import {Image, Text, View} from 'react-native';
 import {styles} from './styles';
 import useOnboarding from './useOnboardingScreen';
 
 const OnboardingScreen = () => {
-  const {handleDone} = useOnboarding();
+  const {handleNavigateAs} = useOnboarding();
 
   return (
     <View>
@@ -24,19 +25,18 @@ const OnboardingScreen = () => {
         </Text>
         <Text style={styles.bottomSubtitle}>Your journey starts here!</Text>
 
-        <View style={styles.btnWrapper}>
-          <Button
-            style={styles.btn}
-            outline
-            label="Login"
-            action={() => handleDone('login')}
-          />
-          <Button
-            style={styles.btn}
-            label="Sign Up"
-            action={() => handleDone('signup')}
-          />
-        </View>
+        <Button
+          style={styles.btn}
+          label="Sign in or Sign Up"
+          action={() => handleNavigateAs('user')}
+        />
+        <Divider text="or" />
+        <Button
+          style={styles.btn}
+          outline
+          label="Explore as Guest"
+          action={() => handleNavigateAs('guest')}
+        />
       </View>
     </View>
   );

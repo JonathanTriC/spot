@@ -1,11 +1,15 @@
 const Colors = {
   white: '#FFFFFF',
+  black: '#000000',
   primary: {
     base: '#082A4B',
+    link: '#477AF1',
     light1: '#B8DAF9',
   },
   dark: {
     disabled: '#C7C8CC',
+    gray1: '#B0ACB7',
+    gray2: '#EDEFF8',
   },
   danger: {
     base: '#F75555',

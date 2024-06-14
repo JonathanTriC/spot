@@ -47,11 +47,8 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 26,
   },
-  btnWrapper: {
-    flexDirection: 'row',
-    gap: 8,
-  },
   btn: {
     flex: 1,
+    width: '100%',
   },
 });

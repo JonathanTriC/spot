@@ -6,10 +6,11 @@ import {Controller} from 'react-hook-form';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
-import useLogin from './useLogin';
+import useRegister from './useRegister';
 
-const LoginScreen = () => {
-  const {navigation, navigateScreen, control, handleSubmit} = useLogin();
+const RegisterScreen = () => {
+  const {navigation, navigateScreen, popScreen, control, handleSubmit} =
+    useRegister();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -25,12 +26,31 @@ const LoginScreen = () => {
           source={require('@assets/images/splash.png')}
           style={styles.logoImg}
         />
-        <Text style={styles.title}>Sign In</Text>
+        <Text style={styles.title}>Sign Up</Text>
         <Text style={styles.subtitle}>
-          Sign in and find your dream spots now
+          Sign up and start exploring your favorite spots now
         </Text>
 
         <View style={styles.formWrapper}>
+          <Controller
+            control={control}
+            name={'full_name'}
+            render={({
+              field: {value, onChange, onBlur},
+              fieldState: {error},
+            }) => (
+              <TextField
+                onChangeText={onChange}
+                onBlur={onBlur}
+                value={value}
+                placeholder="Full Name"
+                leftIcon={'account'}
+                leftIconColor={Colors.primary.base}
+                errorMessage={error?.message}
+              />
+            )}
+          />
+
           <Controller
             control={control}
             name={'email'}
@@ -71,15 +91,33 @@ const LoginScreen = () => {
             )}
           />
 
-          <Text style={styles.forgetPassword}>Forget Password?</Text>
+          <Controller
+            control={control}
+            name={'confirm_password'}
+            render={({
+              field: {value, onChange, onBlur},
+              fieldState: {error},
+            }) => (
+              <TextField
+                onChangeText={onChange}
+                onBlur={onBlur}
+                value={value}
+                placeholder="Confirm Password"
+                leftIcon={'lock'}
+                leftIconColor={Colors.primary.base}
+                secure
+                errorMessage={error?.message}
+              />
+            )}
+          />
         </View>
 
         <View style={styles.footer}>
-          <Button label="Sign in" style={styles.btn} action={() => {}} />
-          <View style={styles.signUpRow}>
-            <Text>Didn’t have account?</Text>
-            <TouchableOpacity onPress={() => navigateScreen('RegisterScreen')}>
-              <Text style={styles.signUpBtn}>Sign Up</Text>
+          <Button label="Sign Up" style={styles.btn} action={() => {}} />
+          <View style={styles.signInRow}>
+            <Text>Already have an account?</Text>
+            <TouchableOpacity onPress={() => popScreen()}>
+              <Text style={styles.signInBtn}>Sign In</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -87,4 +125,4 @@ const LoginScreen = () => {
     </KeyboardAwareScrollView>
   );
 };
-export {LoginScreen};
+export {RegisterScreen};

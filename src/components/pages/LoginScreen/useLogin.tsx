@@ -9,7 +9,7 @@ const formSchema = z.object({
 });
 
 const useLogin = () => {
-  const {navigation} = useNavigate();
+  const {navigation, navigateScreen} = useNavigate();
 
   const {control, handleSubmit, setError} = useForm({
     defaultValues: {
@@ -19,6 +19,6 @@ const useLogin = () => {
     resolver: zodResolver(formSchema),
   });
 
-  return {navigation, control, handleSubmit};
+  return {navigation, navigateScreen, control, handleSubmit};
 };
 export default useLogin;

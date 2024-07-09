@@ -27,7 +27,7 @@ const OnboardingScreen = () => {
 
         <Button
           style={styles.btn}
-          label="Sign In or Sign Up"
+          label="Log In or Register"
           action={() => handleNavigateAs('user')}
         />
         <Divider text="or" />

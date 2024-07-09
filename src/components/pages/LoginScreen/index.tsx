@@ -9,12 +9,18 @@ import styles from './styles';
 import useLogin from './useLogin';
 
 const LoginScreen = () => {
-  const {navigation, navigateScreen, control, handleSubmit} = useLogin();
+  const {
+    navigation,
+    navigateScreen,
+    popAndNavigateScreen,
+    control,
+    handleSubmit,
+  } = useLogin();
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: true,
-      header: () => <Header />,
+      header: () => <Header withCloseIcon />,
     });
   }, []);
 
@@ -25,7 +31,7 @@ const LoginScreen = () => {
           source={require('@assets/images/splash.png')}
           style={styles.logoImg}
         />
-        <Text style={styles.title}>Sign In</Text>
+        <Text style={styles.title}>Log In</Text>
         <Text style={styles.subtitle}>
           Sign in and find your dream spots now
         </Text>
@@ -75,11 +81,12 @@ const LoginScreen = () => {
         </View>
 
         <View style={styles.footer}>
-          <Button label="Sign in" style={styles.btn} action={() => {}} />
+          <Button label="Log in" style={styles.btn} action={() => {}} />
           <View style={styles.signUpRow}>
             <Text>Didn’t have account?</Text>
-            <TouchableOpacity onPress={() => navigateScreen('RegisterScreen')}>
-              <Text style={styles.signUpBtn}>Sign Up</Text>
+            <TouchableOpacity
+              onPress={() => popAndNavigateScreen('RegisterScreen')}>
+              <Text style={styles.signUpBtn}>Register</Text>
             </TouchableOpacity>
           </View>
         </View>

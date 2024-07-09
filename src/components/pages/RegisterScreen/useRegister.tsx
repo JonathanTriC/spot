@@ -18,7 +18,7 @@ const formSchema = z
   });
 
 const useRegister = () => {
-  const {navigation, navigateScreen, popScreen} = useNavigate();
+  const {navigation, navigateScreen, popAndNavigateScreen} = useNavigate();
   const {control, handleSubmit, setError} = useForm({
     defaultValues: {
       full_name: '',
@@ -29,6 +29,12 @@ const useRegister = () => {
     resolver: zodResolver(formSchema),
   });
 
-  return {navigation, navigateScreen, popScreen, control, handleSubmit};
+  return {
+    navigation,
+    navigateScreen,
+    popAndNavigateScreen,
+    control,
+    handleSubmit,
+  };
 };
 export default useRegister;

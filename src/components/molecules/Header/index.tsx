@@ -7,10 +7,11 @@ import {styles} from './styles';
 
 type Props = {
   withBackIcon?: boolean;
+  withCloseIcon?: boolean;
   label?: string;
 };
 
-const Header = ({withBackIcon = true, label}: Props) => {
+const Header = ({withBackIcon = true, withCloseIcon = false, label}: Props) => {
   const navigation: any = React.useContext(NavigationContext);
 
   return (
@@ -18,7 +19,7 @@ const Header = ({withBackIcon = true, label}: Props) => {
       <View style={styles.headerComponent}>
         {withBackIcon ? (
           <IconButton
-            icon={'chevron-left'}
+            icon={!withCloseIcon ? 'chevron-left' : 'close'}
             iconColor={Colors.primary.base}
             size={30}
             onPress={() => navigation.goBack()}

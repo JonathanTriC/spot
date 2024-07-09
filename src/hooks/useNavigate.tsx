@@ -32,6 +32,22 @@ export function useNavigate<T = any>() {
     return navigation?.pop(count);
   };
 
+  const popAndNavigateScreen: <U>(
+    screen: keyof ParamList,
+    params?: U,
+  ) => void = <U,>(screen: keyof ParamList, params?: U) => {
+    if (!navigation) {
+      return;
+    }
+
+    if (!navigation?.canGoBack()) {
+      return;
+    }
+
+    navigation?.pop();
+    navigation?.navigate(screen as any, params);
+  };
+
   const resetNavigate = (screen: keyof ParamList, param?: object) => {
     if (!navigation) {
       return;
@@ -70,6 +86,7 @@ export function useNavigate<T = any>() {
     navigation,
     navigateScreen,
     popScreen,
+    popAndNavigateScreen,
     resetNavigate,
     getRouteParams,
     getRouteNames,

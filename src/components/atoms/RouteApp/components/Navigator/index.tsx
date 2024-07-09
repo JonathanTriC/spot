@@ -23,8 +23,20 @@ export const Navigator: React.FC<NavigatorProps> = () => {
       }}>
       <Stack.Screen name={'SplashScreen'} component={SplashScreen} />
       <Stack.Screen name={'OnboardingScreen'} component={OnboardingScreen} />
-      <Stack.Screen name={'LoginScreen'} component={LoginScreen} />
-      <Stack.Screen name={'RegisterScreen'} component={RegisterScreen} />
+      <Stack.Screen
+        name={'LoginScreen'}
+        component={LoginScreen}
+        options={{
+          presentation: 'modal',
+        }}
+      />
+      <Stack.Screen
+        name={'RegisterScreen'}
+        component={RegisterScreen}
+        options={{
+          presentation: 'modal',
+        }}
+      />
     </Stack.Navigator>
   );
 };

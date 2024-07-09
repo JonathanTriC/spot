@@ -9,13 +9,18 @@ import styles from './styles';
 import useRegister from './useRegister';
 
 const RegisterScreen = () => {
-  const {navigation, navigateScreen, popScreen, control, handleSubmit} =
-    useRegister();
+  const {
+    navigation,
+    navigateScreen,
+    popAndNavigateScreen,
+    control,
+    handleSubmit,
+  } = useRegister();
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: true,
-      header: () => <Header />,
+      header: () => <Header withCloseIcon />,
     });
   }, []);
 
@@ -26,9 +31,9 @@ const RegisterScreen = () => {
           source={require('@assets/images/splash.png')}
           style={styles.logoImg}
         />
-        <Text style={styles.title}>Sign Up</Text>
+        <Text style={styles.title}>Register</Text>
         <Text style={styles.subtitle}>
-          Sign up and start exploring your favorite spots now
+          Register and start exploring your favorite spots now
         </Text>
 
         <View style={styles.formWrapper}>
@@ -113,11 +118,12 @@ const RegisterScreen = () => {
         </View>
 
         <View style={styles.footer}>
-          <Button label="Sign Up" style={styles.btn} action={() => {}} />
+          <Button label="Register" style={styles.btn} action={() => {}} />
           <View style={styles.signInRow}>
             <Text>Already have an account?</Text>
-            <TouchableOpacity onPress={() => popScreen()}>
-              <Text style={styles.signInBtn}>Sign In</Text>
+            <TouchableOpacity
+              onPress={() => popAndNavigateScreen('LoginScreen')}>
+              <Text style={styles.signInBtn}>Log In</Text>
             </TouchableOpacity>
           </View>
         </View>

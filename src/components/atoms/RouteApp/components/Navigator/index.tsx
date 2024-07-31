@@ -1,4 +1,5 @@
 import {
+  HomeScreen,
   LoginScreen,
   OnboardingScreen,
   RegisterScreen,
@@ -37,6 +38,7 @@ export const Navigator: React.FC<NavigatorProps> = () => {
           presentation: 'modal',
         }}
       />
+      <Stack.Screen name={'HomeScreen'} component={HomeScreen} />
     </Stack.Navigator>
   );
 };

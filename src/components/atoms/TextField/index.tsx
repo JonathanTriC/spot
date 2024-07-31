@@ -155,12 +155,14 @@ const TextField: FC<TextFieldtProps> = ({
           }}
           outlineStyle={{
             borderRadius: borderRadius ?? 30,
-            borderColor: errorMessage
-              ? Colors.danger.base
-              : successMessage
-              ? Colors.success.base
-              : Colors.primary.base,
-            borderWidth: errorMessage || successMessage ? 1 : borderWidth,
+            borderColor:
+              errorMessage || error
+                ? Colors.danger.base
+                : successMessage
+                ? Colors.success.base
+                : Colors.primary.base,
+            borderWidth:
+              errorMessage || error || successMessage ? 1 : borderWidth,
           }}
           error={error}
           placeholder={placeholder}

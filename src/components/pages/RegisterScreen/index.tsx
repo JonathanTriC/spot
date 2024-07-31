@@ -11,10 +11,12 @@ import useRegister from './useRegister';
 const RegisterScreen = () => {
   const {
     navigation,
-    navigateScreen,
     popAndNavigateScreen,
     control,
     handleSubmit,
+    onSubmit,
+    isRegisterError,
+    errorMessage,
   } = useRegister();
 
   useLayoutEffect(() => {
@@ -52,6 +54,7 @@ const RegisterScreen = () => {
                 leftIcon={'account'}
                 leftIconColor={Colors.primary.base}
                 errorMessage={error?.message}
+                error={isRegisterError}
               />
             )}
           />
@@ -72,6 +75,7 @@ const RegisterScreen = () => {
                 leftIconColor={Colors.primary.base}
                 keyboardType="email-address"
                 errorMessage={error?.message}
+                error={isRegisterError}
               />
             )}
           />
@@ -92,6 +96,7 @@ const RegisterScreen = () => {
                 leftIconColor={Colors.primary.base}
                 secure
                 errorMessage={error?.message}
+                error={isRegisterError}
               />
             )}
           />
@@ -112,13 +117,18 @@ const RegisterScreen = () => {
                 leftIconColor={Colors.primary.base}
                 secure
                 errorMessage={error?.message}
+                error={isRegisterError}
               />
             )}
           />
         </View>
 
         <View style={styles.footer}>
-          <Button label="Register" style={styles.btn} action={() => {}} />
+          <Button
+            label="Register"
+            style={styles.btn}
+            action={handleSubmit(onSubmit)}
+          />
           <View style={styles.signInRow}>
             <Text>Already have an account?</Text>
             <TouchableOpacity

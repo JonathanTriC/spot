@@ -11,10 +11,12 @@ import useLogin from './useLogin';
 const LoginScreen = () => {
   const {
     navigation,
-    navigateScreen,
     popAndNavigateScreen,
     control,
     handleSubmit,
+    onSubmit,
+    isLoginError,
+    errorMessage,
   } = useLogin();
 
   useLayoutEffect(() => {
@@ -53,6 +55,7 @@ const LoginScreen = () => {
                 leftIconColor={Colors.primary.base}
                 keyboardType="email-address"
                 errorMessage={error?.message}
+                error={isLoginError}
               />
             )}
           />
@@ -73,6 +76,7 @@ const LoginScreen = () => {
                 leftIconColor={Colors.primary.base}
                 secure
                 errorMessage={error?.message}
+                error={isLoginError}
               />
             )}
           />
@@ -81,7 +85,12 @@ const LoginScreen = () => {
         </View>
 
         <View style={styles.footer}>
-          <Button label="Log in" style={styles.btn} action={() => {}} />
+          {errorMessage && <Text>{errorMessage}</Text>}
+          <Button
+            label="Log in"
+            style={styles.btn}
+            action={handleSubmit(onSubmit)}
+          />
           <View style={styles.signUpRow}>
             <Text>Didn’t have account?</Text>
             <TouchableOpacity

@@ -6,6 +6,8 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import {Navigator} from './components/Navigator';
 import {styles} from './style';
+import {Provider} from 'react-redux';
+import {store} from '@store/store';
 
 const MyTheme = {
   ...DefaultTheme,
@@ -17,16 +19,18 @@ const MyTheme = {
 
 export const RouteApp = () => {
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container} edges={['left', 'right']}>
-        <StatusBar barStyle={'dark-content'} backgroundColor={Colors.white} />
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <SafeAreaView style={styles.container} edges={['left', 'right']}>
+          <StatusBar barStyle={'dark-content'} backgroundColor={Colors.white} />
 
-        <GestureHandlerRootView style={{flex: 1}}>
-          <NavigationContainer theme={MyTheme}>
-            <Navigator />
-          </NavigationContainer>
-        </GestureHandlerRootView>
-      </SafeAreaView>
-    </SafeAreaProvider>
+          <GestureHandlerRootView style={{flex: 1}}>
+            <NavigationContainer theme={MyTheme}>
+              <Navigator />
+            </NavigationContainer>
+          </GestureHandlerRootView>
+        </SafeAreaView>
+      </SafeAreaProvider>
+    </Provider>
   );
 };

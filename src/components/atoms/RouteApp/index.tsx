@@ -8,6 +8,8 @@ import {Navigator} from './components/Navigator';
 import {styles} from './style';
 import {Provider} from 'react-redux';
 import {store} from '@store/store';
+import Toast from 'react-native-toast-message';
+import {ToastContainer} from '../ToastContainer';
 
 const MyTheme = {
   ...DefaultTheme,
@@ -15,6 +17,12 @@ const MyTheme = {
     ...DefaultTheme.colors,
     background: Colors.white,
   },
+};
+
+export const toastConfig = {
+  success: (props: any) => <ToastContainer {...props} />,
+  error: (props: any) => <ToastContainer {...props} type="error" />,
+  warning: (props: any) => <ToastContainer {...props} type="warning" />,
 };
 
 export const RouteApp = () => {
@@ -27,6 +35,12 @@ export const RouteApp = () => {
           <GestureHandlerRootView style={{flex: 1}}>
             <NavigationContainer theme={MyTheme}>
               <Navigator />
+
+              <Toast
+                config={toastConfig}
+                position={'bottom'}
+                visibilityTime={5000}
+              />
             </NavigationContainer>
           </GestureHandlerRootView>
         </SafeAreaView>

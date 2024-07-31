@@ -16,7 +16,6 @@ const RegisterScreen = () => {
     handleSubmit,
     onSubmit,
     isRegisterError,
-    errorMessage,
   } = useRegister();
 
   useLayoutEffect(() => {

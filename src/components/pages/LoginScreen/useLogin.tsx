@@ -1,5 +1,5 @@
 import {getErrorMessage} from '@constants/errorUtils';
-import {_handlerSetItem} from '@constants/functional';
+import {_handlerSetItem, showErrorToast} from '@constants/functional';
 import {Keys} from '@constants/keys';
 import {useLoginUserMutation} from '@features/auth';
 import {setCredentials} from '@features/auth/authSlice';
@@ -22,7 +22,6 @@ const useLogin = () => {
     loginUser,
     {data, isLoading, isError: isLoginError, error: loginError},
   ] = useLoginUserMutation();
-  const [errorMessage, setErrorMessage] = useState('');
 
   const {control, handleSubmit, setError} = useForm({
     defaultValues: {
@@ -49,7 +48,7 @@ const useLogin = () => {
 
   useEffect(() => {
     if (isLoginError && loginError) {
-      setErrorMessage(getErrorMessage(loginError));
+      showErrorToast(getErrorMessage(loginError));
     }
   }, [isLoginError, loginError]);
 
@@ -60,7 +59,6 @@ const useLogin = () => {
     handleSubmit,
     onSubmit,
     isLoginError,
-    errorMessage,
   };
 };
 export default useLogin;

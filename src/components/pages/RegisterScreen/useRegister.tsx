@@ -1,5 +1,5 @@
 import {getErrorMessage} from '@constants/errorUtils';
-import {_handlerSetItem} from '@constants/functional';
+import {_handlerSetItem, showErrorToast} from '@constants/functional';
 import {Keys} from '@constants/keys';
 import {useSignupUserMutation} from '@features/auth';
 import {setCredentials} from '@features/auth/authSlice';
@@ -29,7 +29,6 @@ const useRegister = () => {
   const {navigation, resetNavigate, popAndNavigateScreen} = useNavigate();
   const [signupUser, {data, isError: isRegisterError, error: registerError}] =
     useSignupUserMutation();
-  const [errorMessage, setErrorMessage] = useState('');
 
   const {control, handleSubmit, setError} = useForm({
     defaultValues: {
@@ -61,7 +60,7 @@ const useRegister = () => {
 
   useEffect(() => {
     if (isRegisterError && registerError) {
-      setErrorMessage(getErrorMessage(registerError));
+      showErrorToast(getErrorMessage(registerError));
     }
   }, [isRegisterError, registerError]);
 
@@ -72,7 +71,6 @@ const useRegister = () => {
     handleSubmit,
     onSubmit,
     isRegisterError,
-    errorMessage,
   };
 };
 export default useRegister;

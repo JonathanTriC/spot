@@ -16,7 +16,6 @@ const LoginScreen = () => {
     handleSubmit,
     onSubmit,
     isLoginError,
-    errorMessage,
   } = useLogin();
 
   useLayoutEffect(() => {
@@ -85,7 +84,6 @@ const LoginScreen = () => {
         </View>
 
         <View style={styles.footer}>
-          {errorMessage && <Text>{errorMessage}</Text>}
           <Button
             label="Log in"
             style={styles.btn}
